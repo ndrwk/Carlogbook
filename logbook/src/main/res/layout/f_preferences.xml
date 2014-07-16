@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/horizontal_margin"
+    android:paddingRight="@dimen/horizontal_margin">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view_pref_icon"
+            android:layout_width="@dimen/icn_size"
+            android:layout_height="@dimen/icn_size"
+            android:layout_marginLeft="@dimen/middle_margin"
+            android:layout_marginTop="@dimen/middle_margin"
+            android:layout_marginRight="@dimen/middle_margin"
+            android:layout_marginBottom="@dimen/middle_margin" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horizontal_margin">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/saveCSV"
+                android:id="@+id/btnsavetoCSV" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loadCSV"
+                android:id="@+id/btnloadfromCSV" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loadDemo"
+                android:id="@+id/btnloadDemo" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clearDB"
+                android:id="@+id/btnclearDB" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

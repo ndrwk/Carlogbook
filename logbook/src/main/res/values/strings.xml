@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">logbook</string>
+    <string name="menu_settings">Settings</string>
+    <string name="main_no_items">No orders to display</string>
+
+    <color name="redColor">#FFFF0000</color>
+
+
+	<string name="hintcarfirm">Фирма</string>
+	<string name="hintcarmodel">Модель</string>
+	<string name="hintcarvin">VIN (не обязательно)</string>
+	<string name="hintcartank">Объем бака, л.</string>
+	<string name="hintcarodometr">Одометр</string>
+	<string name="savebutton">Сохранить</string>
+    <string name="header_car">Автомобиль</string>
+    <string name="hintcategoryname">Название категории</string>
+    <string name="hintcurrencyname">Название валюты</string>
+    <string name="hintcurrencyprice">Курс валюты</string>
+    <string name="hintpartname">Название</string>
+    <string name="hintpartnumber">Partnumber</string>
+    <string name="hintprovidername">Название</string>
+    <string name="hintprovideraddress">Адрес</string>
+    <string name="hintproviderphone">Телефон</string>
+
+    <string name="menu_save">Сохранить</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">close_drawer</string>
+
+    <string name="header_category">Категория</string>
+    <string name="header_part">Запчасть</string>
+    <string name="header_provider">Контрагент</string>
+
+    <string name="select_icon">Выбрать значок</string>
+    <string name="odometr">Показание одометра</string>
+    <string name="car">Автомобиль</string>
+    <string name="qty">кол</string>
+    <string name="summ">сумма</string>
+    <string name="date">Дата чека</string>
+    <string name="part">Товар/Услуга</string>
+    <string name="qtyn">Кол.</string>
+    <string name="summn">Сумма</string>
+    <string name="currency">Валюта</string>
+    <string name="carfirm">Фирма изготовитель</string>
+    <string name="carmodel">Модель автомобиля</string>
+    <string name="carvin">VIN код</string>
+    <string name="carodometr">Начальное значение одометра, км.</string>
+    <string name="categoryname">Название категории</string>
+    <string name="categoryicon">Выбор значка и цвета категории</string>
+    <string name="categorycolor">Выбор цвета</string>
+    <string name="currencyname">Название валюты (сокр.)</string>
+    <string name="currencyicn">Значок</string>
+    <string name="currencyprice">Курс валюты к основной</string>
+    <string name="partname">Название расхода (запчасть, работа, услуга и пр.)</string>
+    <string name="partnumber">Каталожный номер</string>
+    <string name="providername">Название контрагента</string>
+    <string name="provideraddress">Адрес</string>
+    <string name="providerphone">Номер телефона</string>
+
+    <string name="newcar">Новый автомобиль</string>
+    <string name="newcategory">Новая статья расходов</string>
+    <string name="newcurrency">Новая валюта</string>
+    <string name="newpart">Новый расход</string>
+    <string name="newprovider">Новый контрагент</string>
+
+    <string name="newPart">Новый расход</string>
+    <string name="note">заметка</string>
+    <string name="newCar">Новый авто</string>
+    <string name="newCategory">Новая статья</string>
+    <string name="newProvider">Новый контрагент</string>
+    <string name="newCurrency">Новая валюта</string>
+    <string name="filenotfound">Файл не найден!</string>
+    <string name="filecorrupted">Файл поврежден!</string>
+
+
+    <string name="saveCSV">Сохранить БД в csv</string>
+    <string name="loadCSV">Загрузить из csv</string>
+    <string name="clearDB">Очистить БД</string>
+
+    <string name="delete">Удаление...</string>
+    <string name="delevent">Удалить чек?</string>
+    <string name="attension">Внимание!</string>
+    <string name="alldataerase">Вся сохраненная информация будет уничтожена</string><string name="loadDemo">Демо данные</string>
+
+
+</resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carfirm"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:textSize="@dimen/smalltext_size"
+        android:paddingLeft="@dimen/middle_margin" />
+
+    <EditText
+	    	    android:id="@+id/CarFirm"
+	    	    android:layout_width="match_parent"
+	    	    android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vertical_margin"
+	    	    android:layout_marginTop="@dimen/vertical_margin"
+	    	    android:gravity="center_vertical"
+	    	    android:hint="@string/hintcarfirm"
+	    	    android:inputType="textCapWords"
+	    	    android:textColor="#000000"
+	    	    android:textSize="@dimen/big_text"
+	    	    android:textStyle="bold"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                android:layout_marginRight="@dimen/horizontal_margin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carmodel"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:textSize="@dimen/smalltext_size"
+        android:paddingLeft="@dimen/middle_margin" />
+
+    <EditText
+	    	    android:id="@+id/CarModel"
+	    	    android:layout_width="match_parent"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginBottom="@dimen/vertical_margin"
+	    	    android:layout_marginTop="@dimen/vertical_margin"
+	    	    android:gravity="center_vertical"
+	    	    android:hint="@string/hintcarmodel"
+	    	    android:inputType="textCapWords"
+	    	    android:textColor="#000000"
+	    	    android:textSize="@dimen/big_text"
+	    	    android:textStyle="bold"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                android:layout_marginRight="@dimen/horizontal_margin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carvin"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:textSize="@dimen/smalltext_size"
+        android:paddingLeft="@dimen/middle_margin" />
+
+    <EditText
+	    	    android:id="@+id/CarVIN"
+	    	    android:layout_width="fill_parent"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginBottom="@dimen/vertical_margin"
+	    	    android:layout_marginTop="@dimen/vertical_margin"
+	    	    android:gravity="center_vertical"
+	    	    android:hint="@string/hintcarvin"
+	    	    android:inputType="textCapCharacters"
+	    	    android:textColor="#000000"
+	    	    android:textSize="@dimen/big_text"
+	    	    android:textStyle="bold"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                android:layout_marginRight="@dimen/horizontal_margin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hintcartank"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:textSize="@dimen/smalltext_size"
+        android:paddingLeft="@dimen/middle_margin" />
+
+    <EditText
+	    	    android:id="@+id/CarTank"
+	    	    android:layout_width="fill_parent"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginBottom="@dimen/vertical_margin"
+	    	    android:layout_marginTop="@dimen/vertical_margin"
+	    	    android:gravity="center_vertical"
+	    	    android:hint="@string/hintcartank"
+	    	    android:inputType="numberDecimal"
+	    	    android:textColor="#000000"
+	    	    android:textSize="@dimen/big_text"
+	    	    android:textStyle="bold"
+                android:layout_marginLeft="@dimen/horizontal_margin"
+                android:layout_marginRight="@dimen/horizontal_margin" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carodometr"
+        android:id="@+id/textView"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:layout_marginRight="@dimen/horizontal_margin"
+        android:textSize="@dimen/smalltext_size"
+        android:paddingLeft="@dimen/middle_margin" />
+
+    <EditText
+        android:id="@+id/CarOdometr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vertical_margin"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:gravity="center_vertical"
+        android:hint="@string/hintcarodometr"
+        android:inputType="numberDecimal"
+        android:textColor="#000000"
+        android:textSize="@dimen/big_text"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/horizontal_margin"
+        android:layout_marginRight="@dimen/horizontal_margin" />
+
+</LinearLayout>

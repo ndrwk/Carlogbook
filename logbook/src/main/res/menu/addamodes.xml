@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/undobtn"
+        android:icon="@drawable/ic_action_undo"
+        android:showAsAction="ifRoom|withText"
+        android:title="Отмена" >
+    </item>
+        <item
+                android:id="@+id/addrec"
+                android:icon="@drawable/ic_action_new"
+                android:showAsAction="ifRoom|withText"
+                android:title="Добавить запись" >
+        </item>
+
+
+
+</menu>

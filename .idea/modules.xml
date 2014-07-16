@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Carlogbook.iml" filepath="$PROJECT_DIR$/Carlogbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/colorpickerlib/colorpickerlib.iml" filepath="$PROJECT_DIR$/colorpickerlib/colorpickerlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logbook/logbook.iml" filepath="$PROJECT_DIR$/logbook/logbook.iml" />
+    </modules>
+  </component>
+</project>
+
