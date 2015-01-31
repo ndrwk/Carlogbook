@@ -4,9 +4,12 @@ package ak.logbook;
  * Created by Drew on 13.10.13.
  */
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,12 +30,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Main extends ActionBarActivity implements AdapterView.OnItemClickListener, FragmentLogList.ClickListenerCallback {
+public class Main extends ActionBarActivity implements AdapterView.OnItemClickListener, FragmentLogList.ClickListenerCallback, FragmentPrefs.PrefsCallback {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -64,6 +68,10 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
     public static final String CVcolor = "CVcolor";
 
 
+    public static final String PrefName = "LOGBOOKPREFERENCES";
+    public static final String firstTimeRun = "firstTime";
+    public static boolean firstTime = false;
+
     public static final int CALLCAR = 0;
     public static final int CALLPART = 1;
     public static final int CALLCATEGORY = 2;
@@ -79,6 +87,7 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
     private boolean isAmode = false;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    private FragmentManager fragmentManager;
 
     final static boolean enableLog = true;
 
@@ -89,6 +98,7 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
         setContentView(R.layout.main);
         mTitle = mDrawerTitle = getTitle();
         logbook_children = getResources().getStringArray(R.array.drawer_items);
+        context = this;
 
         dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -108,16 +118,34 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-/*
-        if (savedInstanceState == null) {
-           posInDrawer = 0;
+
+        SharedPreferences firstTimeSettings = getSharedPreferences(PrefName, 0);
+        if (firstTimeSettings.getBoolean(firstTimeRun, true)){
+            loadDemo();
+            SharedPreferences.Editor editor = firstTimeSettings.edit();
+            editor.putBoolean(Main.firstTimeRun, false);
+            editor.commit();
+            Toast.makeText(this, "Загружены демо данные", Toast.LENGTH_LONG).show();
         }
-*/
+    }
+
+    private void loadDemo() {
+        db = new logbookDB(this);
+        dbs = db.getWritableDatabase();
+        ImportExportCSV impexp = new ImportExportCSV(this);
+        impexp.importFromAssets(new Table_Event());
+        impexp.importFromAssets(new Table_Record());
+        impexp.importFromAssets(new Table_Car());
+        impexp.importFromAssets(new Table_Category());
+        impexp.importFromAssets(new Table_Currency());
+        impexp.importFromAssets(new Table_Part());
+        impexp.importFromAssets(new Table_Provider());
+        dbs.close();
+        db.close();
     }
 
     @Override
     protected void onResume (){
-
         super.onResume();
         db = new logbookDB(this);
         dbs = db.getReadableDatabase();
@@ -134,6 +162,9 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
                 } else {
                     selectDrawerItem(posInDrawer);
                 }
+                break;
+            case PREFERENCESFRAG:
+                selectDrawerItem(posInDrawer);
                 break;
         }
 
@@ -183,11 +214,9 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
         supportInvalidateOptionsMenu();
     }
 
+
     private void selectDrawerItem(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragment = new FragmentLogList();
-//        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//        getSupportFragmentManager().executePendingTransactions();
+        fragmentManager = getSupportFragmentManager();
         mDrawerList.setItemChecked(position, true);
         setTitle(logbook_children[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
@@ -217,7 +246,6 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
                 fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 getSupportFragmentManager().executePendingTransactions();
                 FragmentPrefs fragPref = new FragmentPrefs();
-
                 break;
         }
     }
@@ -229,8 +257,8 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
     }
 
     public ArrayList <Item> getArrayFromTable(String table, String[] columns) {
-        if (Main.enableLog)
-            Log.w("ak.Log", "getArrayFromTable " + table);
+//        if (Main.enableLog)
+//            Log.w("ak.Log", "getArrayFromTable " + table);
         Cursor CursorforList = dbs.query(table, columns, null, null, null, null, null);
         ArrayList<Item> Array = new ArrayList<Item>();
         ItemFactory tf = new ItemFactory();
@@ -487,7 +515,6 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
     }
 
     public void delRowfromDB(long id, String TableName) {
-//		int count;
 //		db = new logbookDB (this);
 //		dbs = db.getWritableDatabase();
         dbs.delete(TableName, "_id=" + id, null);
@@ -496,7 +523,6 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
 
 //		dbs.close();
 //		db.close();
-        // return count;
     }
 
     public void updRowInDB(ContentValues CV, long id, String TableName) {
@@ -582,9 +608,6 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
 
     private void LogListMenuItemOnClick (MenuItem menuitem){
         switch (menuitem.getItemId()){
-//           case android.R.id.home:
-//                Toast.makeText(this,menuitem.toString()+" Home",Toast.LENGTH_SHORT).show();
-//                break;
             case R.id.addbutton:
                 callEventforAdd();
                 break;
@@ -595,9 +618,6 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
         Item item = null;
         String tmpName = itm.getName();
         switch (menuitem.getItemId()){
-//           case android.R.id.home:
-//                Toast.makeText(this,menuitem.toString()+" Home",Toast.LENGTH_SHORT).show();
-//                break;
             case R.id.addbutton:
                 if (menuLevel==1) {
                     if (Main.enableLog) Log.w("ak.Log", "ACTION_ADD itm - " + tmpName);
@@ -652,6 +672,56 @@ public class Main extends ActionBarActivity implements AdapterView.OnItemClickLi
                 break;
 
         }
+    }
+
+    @Override
+    public void loadDemoData() {
+        loadDemo();
+    }
+
+    @Override
+    public void clearDB() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(getResources().getString(R.string.attension));
+        alertDialog.setMessage(getResources().getString(R.string.alldataerase));
+        alertDialog.setIcon(android.R.drawable.ic_delete);
+        alertDialog.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                db = new logbookDB(context);
+                dbs = db.getWritableDatabase();
+                String [] dropTables = new String []{"DROP TABLE "+Table_Car.TableName+";",
+                        " DROP TABLE "+Table_Category.TableName+";",
+                        " DROP TABLE "+Table_Currency.TableName+";",
+                        " DROP TABLE "+Table_Event.TableName+";",
+                        " DROP TABLE "+Table_Part.TableName+";",
+                        " DROP TABLE "+Table_Provider.TableName+";",
+                        " DROP TABLE "+Table_Record.TableName+";"};
+                for (int i=0;i<dropTables.length;i++){
+                    dbs.execSQL(dropTables[i]);
+                }
+                String [] createTables = new String[]{Table_Car.TABLECREATESTRING,
+                        Table_Category.TABLECREATESTRING,
+                        Table_Currency.TABLECREATESTRING,
+                        Table_Part.TABLECREATESTRING,
+                        Table_Provider.TABLECREATESTRING,
+                        Table_Event.TABLECREATESTRING,
+                        Table_Record.TABLECREATESTRING};
+                for (int i=0; i<createTables.length;i++){
+                    dbs.execSQL(createTables[i]);
+                }
+                dbs.close();
+                db.close();
+//                isCorrect = true;
+            }
+        });
+        alertDialog.setNegativeButton("НЕТ", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(context, "Отмена", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+        alertDialog.show();
+
     }
 
 

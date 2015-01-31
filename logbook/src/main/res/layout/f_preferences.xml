@@ -44,13 +44,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/loadDemo"
-                android:id="@+id/btnloadDemo" />
+                android:id="@+id/btnloadDemo"
+                android:enabled="false"/>
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/clearDB"
-                android:id="@+id/btnclearDB" />
+                android:id="@+id/btnclearDB"
+                android:enabled="false" />
         </LinearLayout>
 
     </LinearLayout>

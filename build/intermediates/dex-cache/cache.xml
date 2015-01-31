@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="C:\Android\projects\Carlogbook\logbook\build\intermediates\pre-dexed\debug\classes-4d07747fae97954b1fcd339bd514f31139c59b10.jar"
-        jar="C:\Android\projects\Carlogbook\build\intermediates\exploded-aar\Carlogbook\colorpickerlib\unspecified\classes.jar"
+        jar="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="ff5bc61fd155687f5e2e86f02314935fc1a1b53e"/>
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/pre-dexed/debug/classes-83daf4a56c1b0b318d9e823e0b36bad77ee5d654.jar" />
+    </item>
     <item
-        dex="C:\Android\projects\Carlogbook\logbook\build\intermediates\pre-dexed\debug\classes-acc90cc0896361b000a56dc7c068ff8ca091dc27.jar"
-        jar="C:\Android\projects\Carlogbook\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jar="/home/drew/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-8fe2f0c6251be5cce86b9ec3d156be6957f94e64.jar" />
+    </item>
     <item
-        dex="C:\Android\projects\Carlogbook\logbook\build\intermediates\pre-dexed\debug\support-v4-19.1.0-a88936292295a2b298c978d500e3515c720704f0.jar"
-        jar="C:\Android\adt\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jar="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/pre-dexed/debug/classes-676f499ca9bbd8d56270acc01c6a78125a691a3e.jar" />
+    </item>
+    <item
+        jar="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-f9906ebf372706eaa44904c6d8440750d1d76e9c.jar" />
+    </item>
+    <item
+        jar="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/exploded-aar/Carlogbook/colorpickerlib/unspecified/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="9bdcc4e88cfec82bf5ff91e004411047d2a17873">
+        <dex dex="/home/drew/AndroidProjects/Carlogbook/logbook/build/intermediates/pre-dexed/debug/classes-87133655ec15853e08b6fef467d11c93e51ba5ef.jar" />
+    </item>
 
-</pre-dex-items>
+</items>

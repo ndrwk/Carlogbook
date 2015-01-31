@@ -1,7 +1,6 @@
 package ak.logbook;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +18,13 @@ public class FragmentPrefs extends Fragment{
     logbookDB db;
     SQLiteDatabase dbs;
 
+    public interface PrefsCallback {
+        public void loadDemoData();
+        public void clearDB();
+    }
+
+    PrefsCallback prefsCallback;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class FragmentPrefs extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+
         btnsavetoCSV = (Button) getView().findViewById(R.id.btnsavetoCSV);
         btnsavetoCSV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,14 +53,14 @@ public class FragmentPrefs extends Fragment{
         btnclearDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearDB();
+                prefsCallback.clearDB();
             }
         });
         btnloadDemo = (Button) getView().findViewById(R.id.btnloadDemo);
         btnloadDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                importFromAssets();
+                prefsCallback.loadDemoData();
             }
         });
     }
@@ -68,64 +75,11 @@ public class FragmentPrefs extends Fragment{
         impexp.exportToCSV(new Table_Part());
         impexp.exportToCSV(new Table_Provider());
         impexp.exportToCSV(new Table_Record());
-        Toast.makeText(getActivity(),"saved to CSV",Toast.LENGTH_LONG).show();
-        return true;
-    }
-
-    private boolean clearDB (){
-        boolean isCorrect = false;
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle(getResources().getString(R.string.attension));
-        alertDialog.setMessage(getResources().getString(R.string.alldataerase));
-        alertDialog.setIcon(android.R.drawable.ic_delete);
-        alertDialog.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                db = new logbookDB(getActivity());
-                dbs = db.getWritableDatabase();
-                String [] dropTables = new String []{"DROP TABLE "+Table_Car.TableName+";",
-                        " DROP TABLE "+Table_Category.TableName+";",
-                        " DROP TABLE "+Table_Currency.TableName+";",
-                        " DROP TABLE "+Table_Event.TableName+";",
-                        " DROP TABLE "+Table_Part.TableName+";",
-                        " DROP TABLE "+Table_Provider.TableName+";",
-                        " DROP TABLE "+Table_Record.TableName+";"};
-                for (int i=0;i<dropTables.length;i++){
-                    dbs.execSQL(dropTables[i]);
-                }
-                String [] createTables = new String[]{Table_Car.TABLECREATESTRING,
-                        Table_Category.TABLECREATESTRING,
-                        Table_Currency.TABLECREATESTRING,
-                        Table_Part.TABLECREATESTRING,
-                        Table_Provider.TABLECREATESTRING,
-                        Table_Event.TABLECREATESTRING,
-                        Table_Record.TABLECREATESTRING};
-                for (int i=0; i<createTables.length;i++){
-                    dbs.execSQL(createTables[i]);
-                }
-                dbs.close();
-                db.close();
-//                isCorrect = true;
-            }
-        });
-        alertDialog.setNegativeButton("НЕТ", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), "Отмена", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-        alertDialog.show();
-/*
-        if (isCorrect) {
-            return true;
-        }else {
-            return false;
-        }
-*/
+        Toast.makeText(getActivity(),"база сохранена в CSV",Toast.LENGTH_LONG).show();
         return true;
     }
 
     private boolean loadfromCSV (){
-//        clearDB();
         db = new logbookDB(getActivity());
         dbs = db.getWritableDatabase();
         ImportExportCSV impexp = new ImportExportCSV(getActivity());
@@ -142,21 +96,15 @@ public class FragmentPrefs extends Fragment{
         return true;
     }
 
-    private boolean importFromAssets (){
-//        clearDB();
-        db = new logbookDB(getActivity());
-        dbs = db.getWritableDatabase();
-        ImportExportCSV impexp = new ImportExportCSV(getActivity());
-        impexp.importFromAssets(new Table_Event());
-        impexp.importFromAssets(new Table_Record());
-        impexp.importFromAssets(new Table_Car());
-        impexp.importFromAssets(new Table_Category());
-        impexp.importFromAssets(new Table_Currency());
-        impexp.importFromAssets(new Table_Part());
-        impexp.importFromAssets(new Table_Provider());
-        dbs.close();
-        db.close();
-        return true;
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            prefsCallback = (PrefsCallback) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString());
+        }
     }
+
 
 }

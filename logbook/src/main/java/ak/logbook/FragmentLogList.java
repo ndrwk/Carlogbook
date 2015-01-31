@@ -30,9 +30,7 @@ public class FragmentLogList extends ListFragment {
         });
     }
 
-
-
-        @Override
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -42,9 +40,7 @@ public class FragmentLogList extends ListFragment {
         }
     }
 
-
     public void dispList (ArrayAdapter <?> arrayadapter) {
-//        arrayadapter = new ArrayAdapter<String>(actvty, android.R.layout.simple_list_item_activated_1, arraylist);
         setListAdapter(arrayadapter);
     }
 
